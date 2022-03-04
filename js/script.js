@@ -7,7 +7,7 @@ btnPlay.addEventListener('click', play);
 document.addEventListener('keydown', play);
 
 const outputNumbers = 5;
-const timer = 2000; //30 seconds
+const timer = 30000; //30 seconds
 outputContainer.innerHTML = `Premi il bottone gioca o qualsiasi tasto per giocare`
 
 function play() {
