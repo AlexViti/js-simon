@@ -7,11 +7,11 @@ btnPlay.addEventListener('click', play);
 document.addEventListener('keydown', play);
 
 const outputNumbers = 5;
-const timer = 30000; //30 seconds
+const timer = 2000; //30 seconds
 outputContainer.innerHTML = `Premi il bottone gioca o qualsiasi tasto per giocare`
 
 function play() {
-	btnPlay.style.display = 'none';
+	main.removeChild(btnPlay);
 	outputContainer.innerHTML = '';
 	document.removeEventListener('keydown', play);
 	const randomNumberArr = randomArr(outputNumbers, 1, 20);
@@ -40,9 +40,20 @@ function play() {
 				guessedNumbers.push(randomNumberArr[i]);
 			}
 		}
-		outputContainer.innerHTML = `Hai indovinato ${guessedNumbers.length} numeri: ovvero i numeri ${guessedNumbers}`;
-		
-		btnPlay.style.display = 'initial';
+		switch (guessedNumbers.length) {
+			case 0:
+				outputContainer.innerHTML = `Non hai indovinato nessun numero`;
+				break;
+			case 1:
+				outputContainer.innerHTML = `Hai indovinatosolo il numero ${guessedNumbers}`;
+				break;
+			case outputNumbers:
+				outputContainer.innerHTML = `Complimenti, hai indovinato tutti i numeri <br> ${guessedNumbers}`;
+				break;
+			default:
+				outputContainer.innerHTML = `Hai indovinato ${guessedNumbers.length} numeri: ovvero i numeri: ${guessedNumbers}`;
+		}
+		main.append(btnPlay);
 	}
 
 }
