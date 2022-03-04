@@ -15,7 +15,6 @@ function play() {
 	outputContainer.innerHTML = '';
 	document.removeEventListener('keydown', play);
 	const randomNumberArr = randomArr(outputNumbers, 1, 20);
-	console.log(randomNumberArr);
 	const numbersContainer = document.createElement('div');
 	for (let i = 0; i < randomNumberArr.length; i++) {
 		const numberSpan = document.createElement('span');
@@ -40,22 +39,22 @@ function play() {
 				guessedNumbers.push(randomNumberArr[i]);
 			}
 		}
+		let numbersString = guessedNumbers.toString().replace(/,/g, ', ');
 		switch (guessedNumbers.length) {
 			case 0:
 				outputContainer.innerHTML = `Non hai indovinato nessun numero`;
 				break;
 			case 1:
-				outputContainer.innerHTML = `Hai indovinatosolo il numero ${guessedNumbers}`;
+				outputContainer.innerHTML = `Hai indovinato solo il numero ${numbersString}`;
 				break;
 			case outputNumbers:
-				outputContainer.innerHTML = `Complimenti, hai indovinato tutti i numeri <br> ${guessedNumbers}`;
+				outputContainer.innerHTML = `Complimenti, hai indovinato tutti i numeri <br> ${numbersString}`;
 				break;
 			default:
-				outputContainer.innerHTML = `Hai indovinato ${guessedNumbers.length} numeri: ovvero i numeri: ${guessedNumbers}`;
+				outputContainer.innerHTML = `Hai indovinato ${guessedNumbers.length} numeri: ovvero i numeri: ${numbersString}`;
 		}
 		main.append(btnPlay);
 	}
-
 }
 
 function randomArr(length, min, max) {
