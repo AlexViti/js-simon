@@ -1,0 +1,21 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-family: 'Montserrat', sans-serif;
+}
+
+header {
+	background-color: green;
+	color: white;
+	text-align: center;
+	padding: 2rem;
+}
+
+main {
+	max-width: 900px;
+	margin: auto;
+}
