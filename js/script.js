@@ -14,8 +14,9 @@ function play() {
 	main.removeChild(btnPlay);
 	outputContainer.innerHTML = '';
 	document.removeEventListener('keydown', play);
-	const randomNumberArr = randomArr(outputNumbers, 1, 20);
+	const randomNumberArr = randomArr(outputNumbers, 1, 99);
 	const numbersContainer = document.createElement('div');
+
 	for (let i = 0; i < randomNumberArr.length; i++) {
 		const numberSpan = document.createElement('span');
 		numberSpan.innerHTML = randomNumberArr[i];
@@ -24,13 +25,19 @@ function play() {
 	outputContainer.append(numbersContainer);
 	const inputNumbers = [];
 	setTimeout(function() {
-		numbersContainer.style.display = 'none';
-		setTimeout(check, 500);
+		outputContainer.removeChild(numbersContainer);
+		setTimeout(check, 250);
 	}, timer)
 
 	function check() {
 		for (let i = 0; i < outputNumbers; i++) {
-			const inputNumber = parseInt(prompt(`Inserisci ${i + 1}° numero`));
+			let inputNumber;
+			let message = `Inserisci ${i + 1}° numero`;
+			do {
+				inputNumber = parseInt(prompt(message));
+				if (inputNumbers.includes(inputNumber)) message = 'Inserisci un numero diverso';
+				else message = 'Inserisci un numero compreso fra 1 e 99';
+			} while (inputNumbers.includes(inputNumber) || inputNumber < 1 || inputNumber > 99);
 			inputNumbers.push(inputNumber);
 		}
 		const guessedNumbers = [];
